@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {background-color: #6d597a;
+      margin: 10%;
+      color: #192a51;
+      
+      }
+      .main {background-color: #aaa1c8;
+        height: 500px;
+        padding: 5%;
+        border-radius: 5px;
+        border: 2px solid #d5c6e0;
+        box-shadow: 10px 10px #d5c6e0;
+      }
+      p {
+        font-size: 22px;
+      }
+      a {
+        font-size: 22px;
+      }
+      .bio {
+        text-align: center;
+      }
+      .box { background-color: #d5c6e0;
+        padding: 2%;
+        height: 260px;
+        overflow: scroll;
+      }
+      button {
+        font-size: 18px;
+        margin-right: 2px;
+        border: 2px solid #6d597a;
+        border-radius: 5px;
+        border-bottom: none;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+    </style>
+    <script type="text/javascript">
+      function changeTxt(ID){
+        //hide all
+        document.getElementById("Sep20").style.display = "none";
+        document.getElementById("Oct18").style.display = "none";
+        document.getElementById("Nov1").style.display = "none";
+        document.getElementById("Nov8").style.display = "none";
+        document.getElementById("Nov22").style.display = "none";
+        document.getElementById("Project").style.display = "none";
+        //change all buttons
+        document.getElementById("Sep20B").style.backgroundColor = "#aaa1c8";
+        document.getElementById("Oct18B").style.backgroundColor = "#aaa1c8";
+        document.getElementById("Nov1B").style.backgroundColor = "#aaa1c8";
+        document.getElementById("Nov8B").style.backgroundColor = "#aaa1c8";
+        document.getElementById("Nov22B").style.backgroundColor = "#aaa1c8";
+        document.getElementById("ProjectB").style.backgroundColor = "#aaa1c8";
+        
+        document.getElementById(ID).style.display = "block";
+        document.getElementById(ID + "B").style.backgroundColor = "#d5c6e0";
+      }
+    </script>
+    <title>Meg's Weekly Responses</title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="bio">
+        <h1>Hii, welcome to Website <3</h1>
+        <p>My name is Margaret, but please call me Meg!<br>I'm a CART specialization student who wants to pursue design in the future including designing video games and websites.<br>I love crafting stories and making experiences that make others laugh and have fun because life can be pretty boring.</p>
+        <br>
+      </div>
+      <div class="sections">
+        <div class="selectors">
+          <button onclick="changeTxt('Sep20')" id="Sep20B" style="background-color: #d5c6e0;">Sept 20th</button><button onclick="changeTxt('Oct18')" id="Oct18B" style="background-color: #aaa1c8;">Oct 18th</button><button onclick="changeTxt('Nov1')" id="Nov1B" style="background-color: #aaa1c8;">Edge Impulse</button><button onclick="changeTxt('Nov8')" id="Nov8B" style="background-color: #aaa1c8;">Nov 8th</button><button onclick="changeTxt('Nov22')" id="Nov22B" style="background-color: #aaa1c8;">NLP</button><button onclick="changeTxt('Project')" id="ProjectB" style="background-color: #aaa1c8;">Final Project</button>
+        </div>
+        <div id="Sep20" class="box">
+          <h1>Weekly Response: Crowdsourcing</h1>
+          <p>The project I chose to look at was Kyle McDonald’s “Exhausting a Crowd”. I was drawn to this project because it seems to have depth and an interesting concept but the result came out to be a more comedic experience. The entire idea of this project was to observe strangers while they are going about their day and to encourage interesting comments while observing their lives. While it was technically successful, I feel like the website took more of a comedic twist than expected. Most of the comments seem to be funny quips such as “Bird Bird Bird” or “Booking a read”. I feel like this website turned into more of an observation of how people mimic those around them and compete in a way for attention even in this abstract environment. I even found myself looking for something to make a funny comment on in the footage in order to join this fun experiment. While it probably wasn’t the intended outcome of the project I personally love the results and had fun exploring the different environments and comments submitted.</p>
+        </div>
+        <div id="Oct18" class="box" style="display: none;">
+          <h1>Weekly Response: Experiential Data Visualization</h1>
+          <p>I chose to discuss the project Me too Anti-Network by Kim Albrecht. I was drawn to this project because of its critical analysis of the Me Too movement, something I have been following for a while with a negative point of view. I believe the idea behind the movement is valid and something worth fighting for, but over the years the movement has been tainted with bad press and showed little to no signs of change. However, to give some credit to the movement, back when it started sexual harassment was a big issue with little to no attention on it. The Me too movement has worked in the sense that the issue of sexual harassment now has the proper awareness and attention this issue deserves however it has also brought some issues along with it. This website by Kim Albrecht has another good example of the toxic side of Me too, as it shows the social media version of the movement that consists of simply replying with #MeToo to everything to support it. This is a common occurrence for social media, when a movement goes viral people will find a way to “show their support” in the simplest and easiest way possible. Instead of informing others or sharing resources on the topic, movements like me too have made it common practice to just comment MeToo on a post even going so far as people saying “if you don’t repost this you don’t support the movement”. This is one of the glaring issues in social media, people will take a movement with a solid belief and warp it into a different negative argument like the idea that all men are just bad people. As this project shows, social media is known to take a movement with a basis, like Me Too, and turn it into a toxic mindset or teach people ineffective ways to help these movements.</p>
+          <p>Now to compare the Me Too Anti-Network to Sepandar D. Kamvar and Jonathan Harris,We Feel Fine and Searching the Emotional Web. In my opinion there aren't too many similarities to touch on other than the idea of Experiential Data Visualization. Both projects take data from their respective sources and create a website that informs viewers of their projects in an artistic and creative way. I really enjoyed how the visuals were made for the Me Too Anti-Network as all the compiled tweets are arranged to look pretty even though they are discussing a serious topic. I feel like in both projects the visuals made the projects a lot more approachable than if they were displayed as articles. The colours and UI used in both give the viewer something to play with while still saying exactly what they want to. The two subjects the websites explore are very different but the idea of spreading information is something they share.</p>
+        </div>
+        <div id="Nov1" class="box" style="display: none;">
+          <h1>Edge Impulse Exercise (featuring Elio :D)</h1>
+          <p>This exercise was too long to fit on my website, but I have provided a link below to the PDF version on my github!</p>
+          <a href="https://github.com/megsummmers/CART-451/blob/main/CART%20451%2C%20Edge%20Impulse%20Exercise.pdf">Click here to see the PDF</a>
+        </div>
+        <div id="Nov8" class="box" style="display: none;">
+          <h1>Weekly Response: Refik Anadol</h1>
+          <p>I chose to look at Refik Anadol’s Machine Hallucination piece in New York City. Personally, I feel like I enjoy most of Anadols work as his creative process \is the most interesting part of it. I find it so interesting that most of his work is made through machine learning of images he hand picks. I especially find it ironic that machines are always framed as cold and unimaginative but he twists the narrative to make them seem creative and artistic. While I understand that the machine is heavily influenced by the artist, I still love that he turns the bland idea of machines into this creative and mesmerizing experience. The reason I chose Machine Hallucination specifically was because I loved the storytelling aespect it has. The machine was given only photos of New York City and outputted a visual story of the city. It so interesting to try and imagine how it got from a photo set to a visually stunning setup of grids, blueprints and bright colours. The setup of the exhibition also peaked my interest as I love exhibit that try to fully immerse you. Having the projection all around you fully brings you into this world he creates.</p>
+        </div>
+        <div id="Nov22" class="box" style="display: none;">
+          <h1>NLP Exercise</h1>
+          <p>TBA: Come back on November 22nd!</p>
+        </div>
+        <div id="Project" class="box" style="display: none;">
+          <h1>Final Project Link</h1>
+          <p>Links to all the important documents related to my final CART 451 project, Caricature!</p>
+          <a href="https://github.com/megsummmers/CART-451/blob/main/Proposal/CART%20451%2C%20Project%20Proposal.pdf">Link to the Proposal PDF</a> <br>
+          <a href="https://github.com/megsummmers/CART-451/blob/main/CART%20451%2C%20Propototype%20.pdf">Link to the Prototype PDF</a> <br>
+          <a href="https://github.com/megsummmers/CART-451/tree/main/CART451_FinalProject">Link to the Folder of the final project</a> <p>Still a work in progress, final link will be available at a later date </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
