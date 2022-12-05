@@ -1,27 +1,32 @@
+let id;
+
 window.onload = function () {
     console.log("we are loaded");
   
-  //   //search feature
-  //   document.querySelector("#findData").addEventListener('click', function(event){
+    //search feature
+    document.querySelector("#findData").addEventListener('click', function(event){
   
-  //     let searchCrit = document.getElementById("searchCrit").value;
-  //     $.get(
-  //       "/varsToMongo",
-  //       {paramOne : searchCrit},
-  //      // if we get a response from the server .... 
-  //       function(response) {
-  //          console.log(response);
+      let searchCrit = document.getElementById("searchCrit").value;
+      $.get(
+        "/varsToMongo",
+        {full_name : id},
+       // if we get a response from the server .... 
+        function(response) {
+           console.log(response);
            
-  //   })
-  // });//click
+    })
+  });//click
   
     //receive form info
     document.querySelector("#sendData").addEventListener('click', 
       function(event){
         event.preventDefault();
         console.log("clicked");
+        id = document.querySelector("#firstname").value + document.querySelector("#lastname").value;
+        console.log(id);
         let mData={
             //physical descriptors
+            full_name:document.querySelector("#firstname").value + document.querySelector("#lastname").value,
             first_name:document.querySelector("#firstname").value,
             last_name:document.querySelector("#lastname").value,
             gender:document.querySelector("#gender").value,

@@ -54,6 +54,8 @@ server.listen(portNumber, function(){
 
 /// receive the post
 app.post('/postForm',handlePost);
+// query route
+app.use('/varsToMongo',handleGetVars);
 
 // recieve data from profile form
 function handlePost(request,response){
@@ -71,12 +73,19 @@ function handlePost(request,response){
   });
 }
 
-// MongoClient.connect(url, function(err, db) {
-//   if (err) throw err;
-//   var dbo = db.db("mydb");
-//   dbo.collection("customers").findOne({}, function(err, result) {
-//     if (err) throw err;
-//     console.log(result.name);
-//     db.close();
-//   });
-// });
+//EXAMPLE of  user making a query ... 10
+async function  handleGetVars  (request,response,next){
+  console.log(request.url);
+  console.log(request.query.paramOne);
+  response.send("SUCCESS GET");
+
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("mydb");
+    dbo.collection("customers").find(request.query.full_name).toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      db.close();
+    });
+  });
+}

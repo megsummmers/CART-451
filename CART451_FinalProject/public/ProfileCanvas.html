@@ -7,25 +7,46 @@
 <script type="text/javascript">
     paper.install(window);
     let colour = 'black';
+    let ogcolour;
+    let brushSize = 1;
 
     window.onload = function() {
 		// Get a reference to the canvas object
 		let canvas = document.getElementById('myCanvas');
         paper.setup(canvas);
-         let tool =  new Tool();
-         let myPath;
+        let pathTool =  new Tool();
+        let myPath;
 
-         tool.onMouseDown = function (event){
+        pathTool.onMouseDown = function (event){
             path = new Path();
 			path.strokeColor = colour;
 			path.add(event.point);
-         }
-         tool.onMouseDrag = function(event) {
+            path.strokeWidth = brushSize;
+        }
+        pathTool.onMouseDrag = function(event) {
 			path.add(event.point);
+            path.smooth();
+		}
+        pathTool.onMouseDrag = function(event) {
+			path.closed = true;
+            path.smooth();
 		}
     }
     function ChangeColour(selectedColour){
             colour = selectedColour;
+    }
+    function ChangeSize(change){
+        brushSize = brushSize += change;
+        console.log(brushSize);
+        document.getElementById("brushSize").innerHTML = brushSize;
+    }
+    function ChangeTool(pen){
+        ogcolour = colour;
+        if(pen){
+            colour = ogcolour;
+        } else if(!pen){
+            colour = "white";
+        }
     }
     </script>
     <title>Caricature</title>
@@ -34,33 +55,70 @@
     <div class="main">
         <h3>DRAW YOURSELF:</h3>
         <div class="interface">
-            <canvas id = "myCanvas"></canvas>
-            <div class="colours">
-                <div class="row1">
-                    <button onclick="ChangeColour('red')" class="colourBtn" style="background-color: red; border-color: red;"></button>
-                    <button onclick="ChangeColour('orange')" class="colourBtn" style="background-color: orange; border-color: orange;"></button>
-                    <button onclick="ChangeColour('yellow')" class="colourBtn" style="background-color: yellow; border-color: yellow;"></button>
-                    <button onclick="ChangeColour('green')" class="colourBtn" style="background-color: green; border-color: green;"></button>
-                    <button onclick="ChangeColour('blue')" class="colourBtn" style="background-color: blue; border-color: blue;"></button>
-                    <button onclick="ChangeColour('purple')" class="colourBtn" style="background-color: purple; border-color: purple;"></button>
-                    <button onclick="ChangeColour('pink')" class="colourBtn" style="background-color: pink; border-color: pink;"></button>
-                    <button onclick="ChangeColour('white')" class="colourBtn" style="background-color: white; border-color: white;"></button>
-                    <button onclick="ChangeColour('grey')" class="colourBtn" style="background-color: grey; border-color: grey;"></button>
-                    <button onclick="ChangeColour('black')" class="colourBtn" style="background-color: black; border-color: black;"></button>
+            <div class="canvasSetup">
+                <!-- <div class="canProfile">
+                    <div class = "canvasQues">
+                        <b class="canvAns" id="NameAns">Name:</b>
+                        <b class="canvAns" id="GenderAns">Gender:</b>
+                        <b class="canvAns" id="SkinAns">Skin Colour:</b>
+                        <b class="canvAns" id="HairAns">Hair Colour:</b>
+                        <b class="canvAns" id="BodyAns">Body Type:</b>
+                        <b class="canvAns" id="EyeAns">Eye Colour:</b>
+                        <b class="canvAns" id="BirthdayAns">Birthday:</b>
+                        <b class="canvAns" id="SeasonAns">Fav Season:</b>
+                        <b class="canvAns" id="AnimalAns">Fav Animal:</b>
+                        <b class="canvAns" id="ColourAns">Fav Colour:</b>
+                        <b class="canvAns" id="ShowAns">Fav Show:</b>
+                    </div>
+                    <div class = "canvasAns">
+                        <b class="canvAns" id="NameAns">Name:</b> 
+                        <b class="canvAns" id="GenderAns">Gender:</b>
+                        <b class="canvAns" id="SkinAns">Skin Colour:</b>
+                        <b class="canvAns" id="HairAns">Hair Colour:</b>
+                        <b class="canvAns" id="BodyAns">Body Type:</b>
+                        <b class="canvAns" id="EyeAns">Eye Colour:</b>
+                        <b class="canvAns" id="BirthdayAns">Birthday:</b>
+                        <b class="canvAns" id="SeasonAns">Favorite Season:</b>
+                        <b class="canvAns" id="AnimalAns">Favorite Animal:</b>
+                        <b class="canvAns" id="ColourAns">Favorite Colour:</b>
+                        <b class="canvAns" id="ShowAns">Favorite Show:</b>
+                    </div>
+                </div> -->
+                <div class="canvas">
+                    <canvas id = "myCanvas"></canvas>
+                    <div class="colours">
+                        <div class="row1">
+                            <button onclick="ChangeColour('red')" class="colourBtn" style="background-color: red; border-color: red;"></button>
+                            <button onclick="ChangeColour('orange')" class="colourBtn" style="background-color: orange; border-color: orange;"></button>
+                            <button onclick="ChangeColour('yellow')" class="colourBtn" style="background-color: yellow; border-color: yellow;"></button>
+                            <button onclick="ChangeColour('green')" class="colourBtn" style="background-color: green; border-color: green;"></button>
+                            <button onclick="ChangeColour('blue')" class="colourBtn" style="background-color: blue; border-color: blue;"></button>
+                            <button onclick="ChangeColour('purple')" class="colourBtn" style="background-color: purple; border-color: purple;"></button>
+                            <button onclick="ChangeColour('pink')" class="colourBtn" style="background-color: pink; border-color: pink;"></button>
+                            <button onclick="ChangeColour('white')" class="colourBtn" style="background-color: white; border-color: white;"></button>
+                            <button onclick="ChangeColour('grey')" class="colourBtn" style="background-color: grey; border-color: grey;"></button>
+                            <button onclick="ChangeColour('black')" class="colourBtn" style="background-color: black; border-color: black;"></button>
+                            <button onclick="ChangeSize(1)" class="colourBtn" style="background-color: lightblue; border-color: black;">+</button>
+                            <b id="brushSize"> 1 </b>
+                            <button onclick="ChangeSize(-1)" class="colourBtn" style="background-color: lightblue; border-color: black;">-</button>
+                        </div>
+                        <div class="row2">
+                            <button onclick="ChangeColour('red')" class="colourBtn" style="background-color: red; border-color: red;"></button>
+                            <button onclick="ChangeColour('orange')" class="colourBtn" style="background-color: orange; border-color: orange;"></button>
+                            <button onclick="ChangeColour('yellow')" class="colourBtn" style="background-color: yellow; border-color: yellow;"></button>
+                            <button onclick="ChangeColour('green')" class="colourBtn" style="background-color: green; border-color: green;"></button>
+                            <button onclick="ChangeColour('blue')" class="colourBtn" style="background-color: blue; border-color: blue;"></button>
+                            <button onclick="ChangeColour('purple')" class="colourBtn" style="background-color: purple; border-color: purple;"></button>
+                            <button onclick="ChangeColour('pink')" class="colourBtn" style="background-color: pink; border-color: pink;"></button>
+                            <button onclick="ChangeColour('white')" class="colourBtn" style="background-color: white; border-color: white;"></button>
+                            <button onclick="ChangeColour('grey')" class="colourBtn" style="background-color: grey; border-color: grey;"></button>
+                            <button onclick="ChangeColour('black')" class="colourBtn" style="background-color: black; border-color: black;"></button>
+                            <button onclick="ChangeTool(true)" class="toolBtn" style="background-color: lightblue; border-color: black;">Pencil</button>
+                            <button onclick="ChangeTool(false)" class="toolBtn" style="background-color: lightblue; border-color: black;">Eraser</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="row2">
-                    <button onclick="ChangeColour('red')" class="colourBtn" style="background-color: red; border-color: red;"></button>
-                    <button onclick="ChangeColour('orange')" class="colourBtn" style="background-color: orange; border-color: orange;"></button>
-                    <button onclick="ChangeColour('yellow')" class="colourBtn" style="background-color: yellow; border-color: yellow;"></button>
-                    <button onclick="ChangeColour('green')" class="colourBtn" style="background-color: green; border-color: green;"></button>
-                    <button onclick="ChangeColour('blue')" class="colourBtn" style="background-color: blue; border-color: blue;"></button>
-                    <button onclick="ChangeColour('purple')" class="colourBtn" style="background-color: purple; border-color: purple;"></button>
-                    <button onclick="ChangeColour('pink')" class="colourBtn" style="background-color: pink; border-color: pink;"></button>
-                    <button onclick="ChangeColour('white')" class="colourBtn" style="background-color: white; border-color: white;"></button>
-                    <button onclick="ChangeColour('grey')" class="colourBtn" style="background-color: grey; border-color: grey;"></button>
-                    <button onclick="ChangeColour('black')" class="colourBtn" style="background-color: black; border-color: black;"></button>
-                </div>
-            </div>
+            </div>  
         </div>
     </div>
 </body>
