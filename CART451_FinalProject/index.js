@@ -54,10 +54,12 @@ server.listen(portNumber, function(){
 
 /// receive the post
 app.post('/postForm',handlePost);
+/// receive the post
+app.post('/postIMG',handleIMGPost);
 // query route
 app.use('/varsToMongo',handleGetVars);
 
-// recieve data from profile form
+// push profile info into mongo
 function handlePost(request,response){
   console.log(request.body);
   response.send("SUCCESS POST");
@@ -73,19 +75,32 @@ function handlePost(request,response){
   });
 }
 
-//EXAMPLE of  user making a query ... 10
-async function  handleGetVars  (request,response,next){
-  console.log(request.url);
-  console.log(request.query.paramOne);
-  response.send("SUCCESS GET");
-
-  MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("mydb");
-    dbo.collection("customers").find(request.query.full_name).toArray(function(err, result) {
-      if (err) throw err;
-      console.log(result);
+// push image into mongo
+function handleIMGPost(request,response){
+  console.log(request.body);
+  response.send("SUCCESS POST");
+  MongoClient.connect(url, function(err, db){
+    if(err) throw err;
+    var accesDB = db.db("clustercaricature");
+    var myobj = request.body;
+    accesDB.collection("Users").insertOne(myobj, function(err, res){
+      if(err) throw err;
+      console.log("inserted doc");
       db.close();
-    });
+    })
+  });
+}
+
+//query 
+async function handleGetVars(request,response,next){
+  MongoClient.connect(url, function(err, db){
+    if(err) throw err;
+    var accesDB = db.db("clustercaricature");
+    accesDB.collection("Users").find(request.query).toArray(function(err, res){
+      if(err) throw err;
+      console.log(res);
+      response.send(res);
+      db.close();
+    })
   });
 }

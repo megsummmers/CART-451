@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 <!-- Load the Paper.js library -->
 <script type="text/javascript" src="js/paper-full.js"></script>
+<script type="text/javascript" src="js/clientIMGPush.js"></script>
 <script type="text/javascript">
     paper.install(window);
     let colour = 'black';
@@ -16,6 +17,8 @@
         paper.setup(canvas);
         let pathTool =  new Tool();
         let myPath;
+
+        console.log(window.id);
 
         pathTool.onMouseDown = function (event){
             path = new Path();
@@ -47,6 +50,27 @@
         } else if(!pen){
             colour = "white";
         }
+    }
+    function SaveImg(){
+        var dataURL = canvas.toDataURL();
+        
+        $.ajax({
+            type: "POST",
+            data: {name: window.id, image: dataURL},
+            url: "/postIMG",
+            processData: false,
+            cache: false,
+            timeout: 600000,
+            success: function (response) {
+            //reponse is a STRING
+            console.log("we had success!");
+            console.log(response);
+            },
+                error:function(e){
+                console.log(e);
+                console.log("error occurred");
+            }
+        })
     }
     </script>
     <title>Caricature</title>
@@ -115,6 +139,8 @@
                             <button onclick="ChangeColour('black')" class="colourBtn" style="background-color: black; border-color: black;"></button>
                             <button onclick="ChangeTool(true)" class="toolBtn" style="background-color: lightblue; border-color: black;">Pencil</button>
                             <button onclick="ChangeTool(false)" class="toolBtn" style="background-color: lightblue; border-color: black;">Eraser</button>
+                            <button onclick="SaveImg(false)" class="toolBtn" style="background-color: lightblue; border-color: black;">Submit</button>
+
                         </div>
                     </div>
                 </div>

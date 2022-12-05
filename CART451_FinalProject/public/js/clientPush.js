@@ -1,28 +1,14 @@
-let id;
+var id;
 
 window.onload = function () {
-    console.log("we are loaded");
-  
-    //search feature
-    document.querySelector("#findData").addEventListener('click', function(event){
-  
-      let searchCrit = document.getElementById("searchCrit").value;
-      $.get(
-        "/varsToMongo",
-        {full_name : id},
-       // if we get a response from the server .... 
-        function(response) {
-           console.log(response);
-           
-    })
-  });//click
-  
+  console.log("we are loaded");
+
     //receive form info
     document.querySelector("#sendData").addEventListener('click', 
       function(event){
         event.preventDefault();
         console.log("clicked");
-        id = document.querySelector("#firstname").value + document.querySelector("#lastname").value;
+        id = document.querySelector("#firstname").value;
         console.log(id);
         let mData={
             //physical descriptors
@@ -74,6 +60,7 @@ window.onload = function () {
                }
              });
     
-    
+             getUserData();
+             window.location.href = "/viewProfile";
       });//click
   };
