@@ -1,0 +1,220 @@
+body{
+    color:#1F6D80;
+    background-color: #219EBC;
+    font-size: 15px;
+  }
+
+  h2 {
+    margin-left: 30%;
+  }
+
+  h3 {
+    margin-left: 2%;
+  }
+
+  .main{
+    background-color: #D3EDEE;
+    margin: auto;
+    margin-top: 3%;
+    width: 65%;
+    height: 560px;
+    border: 4px solid #1F6D80;
+    border-radius: 10px;
+  }
+
+  .interface{
+    background-color: #A8DADC;
+    height: 500px;
+    border-top: 4px solid #1F6D80;
+    overflow: scroll;
+  }
+
+  #myCanvas {
+    background-color: #FFFFFF;
+    height: 370px;
+    margin: 1%;
+    margin-right: 2%;
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+
+  .colours {
+    margin-top: 2%;
+    margin-right: 5%;
+  }
+
+  .row1 {
+    display: flex;
+    margin-left: 1%;
+  }
+
+  .row2 {
+    display: flex;
+    margin-left: 1%;
+    margin-top: 1%;
+  }
+
+  .colourBtn {
+    border: 1px solid;
+    cursor: pointer;
+    margin-bottom: 0%;
+    margin-right: 1%;
+    height: 25px;
+    width: 25px;
+  }
+
+  .toolBtn {
+    border: 1px solid;
+    cursor: pointer;
+    margin-bottom: 0%;
+    margin-right: 1%;
+    height: 25px;
+  }
+
+  .canvasSetup {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .canProfile {
+    display: flex;
+    margin: 1%;
+    margin-right: 0%;
+    width: 25%;
+  }
+
+  .canvasQues {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    margin: 1%;
+    margin-left: 0%;
+    margin-bottom: 0%;
+    font-size: small;
+  }
+
+  .canvasAns {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin: 1%;
+    margin-right: 0%;
+    margin-bottom: 0%;
+    font-size: small;
+  }
+
+  .canvAns {
+    margin-bottom: 5%;
+  }
+  
+  .canvas {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #brushSize {
+    margin-right: 1%;
+    color: black;
+  }
+
+  .frontPage {
+    background-color: #A8DADC;
+    height: 500px;
+    border-top: 4px solid #1F6D80;
+    overflow: scroll;
+  }
+
+  .canvasButton {
+    background-color: #FFFFFF;
+    height: 300px;
+    width: 20%;
+    font-size: 50px;
+    margin-left: 15%;
+    margin-right: 2%;
+    margin-top: 5%;
+    border-radius: 8px;
+    border-top: 2px solid #1F6D80;
+    box-shadow: 5px 10px #1F6D80;
+    
+  }
+
+  .bioButton {
+    background-color: #FFFFFF;
+    height: 300px;
+    width: 20%;
+    font-size: 50px;
+    margin-left: 2%;
+    margin-right: 2%;
+    border-radius: 8px;
+    border-top: 2px solid #1F6D80;
+    box-shadow: 5px 10px #1F6D80;
+  }
+  .profileButton {
+    background-color: #FFFFFF;
+    height: 300px;
+    width: 20%;
+    font-size: 50px;
+    margin-left: 2%;
+    margin-right: 10%;
+    border-radius: 8px;
+    border-top: 2px solid #1F6D80;
+    box-shadow: 5px 10px #1F6D80;
+  }
+
+  .canvasButton:hover {
+    border: 3px solid #1F6D80;
+    box-shadow: 5px 10px 5px #1F6D80;
+  }
+  .bioButton:hover {
+    border: 3px solid #1F6D80;
+    box-shadow: 5px 10px 5px #1F6D80;
+  }
+  .profileButton:hover {
+    border: 3px solid #1F6D80;
+    box-shadow: 5px 10px 5px #1F6D80;
+  }
+
+  .image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .names {
+    float: left;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    margin-left: 5%;
+    font-size: medium;
+  }
+
+  .form {
+    float: right;
+    display: flex;
+    flex-direction: column;
+    margin-right: 18%;
+    width: 55%;
+  }
+
+  .questions {
+    margin-bottom: 4.5%;
+  }
+
+  .answers {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-right: 18%;
+    margin-left: 2%;
+    font-size: medium;
+  }
+
+  .answer {
+    margin-bottom: 1.6%;
+    margin-left: 5%;
+  }
+
+  input{
+    margin-bottom: 1%;
+  }
