@@ -1,18 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
 <head>
+    <title>Caricature</title>
 <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 <!-- Load the Paper.js library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="js/clientGet.js"></script>
+<script type="text/javascript" src="js/clientIMGPush.js"></script>
+<script type="text/javascript" src="js/clientGetRand.js"></script>
+<script type="text/javascript" src="js/clientIMGGet.js"></script>
 <script type="text/javascript" src="js/paper-full.js"></script>
 <script type="text/javascript">
     paper.install(window);
     let colour = 'black';
     let ogcolour;
     let brushSize = 1;
+    let canvas;
+    var art;
 
     window.onload = function() {
+        document.getElementById('4').style.display = "none";
+        document.getElementById('5').style.display = "none";
+        document.getElementById('6').style.display = "none";
+        document.getElementById('10').style.display = "none";
+        document.getElementById('11').style.display = "none";
+        document.getElementById('15').style.display = "none";
+        document.getElementById('18').style.display = "none";
+        document.getElementById('20').style.display = "none";
+
 		// Get a reference to the canvas object
-		let canvas = document.getElementById('myCanvas');
+		canvas = document.getElementById('myCanvas');
         paper.setup(canvas);
         let pathTool =  new Tool();
         let myPath;
@@ -25,15 +43,14 @@
         }
         pathTool.onMouseDrag = function(event) {
 			path.add(event.point);
-            path.smooth();
 		}
     }
     function ChangeColour(selectedColour){
-            colour = selectedColour;
+        colour = selectedColour;
     }
     function ChangeSize(change){
         brushSize = brushSize += change;
-        console.log(brushSize);
+
         document.getElementById("brushSize").innerHTML = brushSize;
     }
     function ChangeTool(pen){
@@ -44,41 +61,45 @@
             colour = "white";
         }
     }
-    </script>
-    <title>Caricature</title>
+    function SaveImg(){
+        var dataURL = canvas.toDataURL();
+        //imgPost(dataURL);
+        document.querySelector("#finishedDrawing").src = dataURL;
+        document.querySelector("#finalScreen").style.display = "flex";
+    }
+    function Home(){
+        window.location.href = "/home";
+    }
+</script>
 </head>
 <body>
     <div class="main">
-        <h3>DRAW YOURSELF:</h3>
+        <div class="topBar" style="display: flex;"><button onclick="Home()" class="home" style="height: 45px; width: 50px; margin: 1%; background-color: white; border: 2px solid #1F6D80; border-radius: 5px; color:#1F6D80;">Home</button><h3>MAKE A CARICATURE:</h3></div>
         <div class="interface">
+            <b style="display: none;" id="FirstNameAns">Meg</b><b style="display: none;" id="LastNameAns">Summers</b>
             <div class="canvasSetup">
                 <div class="canProfile">
-                    <div class = "canvasQues">
-                        <b class="canvAns" id="NameAns">Name:</b>
-                        <b class="canvAns" id="GenderAns">Gender:</b>
-                        <b class="canvAns" id="SkinAns">Skin Colour:</b>
-                        <b class="canvAns" id="HairAns">Hair Colour:</b>
-                        <b class="canvAns" id="BodyAns">Body Type:</b>
-                        <b class="canvAns" id="EyeAns">Eye Colour:</b>
-                        <b class="canvAns" id="BirthdayAns">Birthday:</b>
-                        <b class="canvAns" id="SeasonAns">Fav Season:</b>
-                        <b class="canvAns" id="AnimalAns">Fav Animal:</b>
-                        <b class="canvAns" id="ColourAns">Fav Colour:</b>
-                        <b class="canvAns" id="ShowAns">Fav Show:</b>
-                    </div>
-                    <div class = "canvasAns">
-                        <b class="canvAns" id="NameAns">Name:</b> 
-                        <b class="canvAns" id="GenderAns">Gender:</b>
-                        <b class="canvAns" id="SkinAns">Skin Colour:</b>
-                        <b class="canvAns" id="HairAns">Hair Colour:</b>
-                        <b class="canvAns" id="BodyAns">Body Type:</b>
-                        <b class="canvAns" id="EyeAns">Eye Colour:</b>
-                        <b class="canvAns" id="BirthdayAns">Birthday:</b>
-                        <b class="canvAns" id="SeasonAns">Favorite Season:</b>
-                        <b class="canvAns" id="AnimalAns">Favorite Animal:</b>
-                        <b class="canvAns" id="ColourAns">Favorite Colour:</b>
-                        <b class="canvAns" id="ShowAns">Favorite Show:</b>
-                    </div>
+                    <div class = "names" id="names">
+                        <div class="row1" id="1"><b class="questions">First Name:</b> <span class="answer" id="FirstNameRand">First Name</span></div>
+                        <div class="row1" id="2"><b class="questions">Last Name:</b> <span class="answer" id="LastNameRand">Last Name</span></div>
+                        <div class="row1" id="3"><b class="questions">Gender:</b><span class="answer" id="GenderRand">Gender</span></div>
+                        <div class="row1" id="4"><b class="questions">Skin Colour:</b><span class="answer" id="SkinRand">Skin Colour</span></div>
+                        <div class="row1" id="5"><b class="questions">Hair Colour:</b><span class="answer" id="HairRand">Hair Colour</span></div>
+                        <div class="row1" id="6"><b class="questions">Body Type:</b><span class="answer" id="BodyRand">Body Type</span></div>
+                        <div class="row1" id="7"><b class="questions">Eye Colour:</b><span class="answer" id="EyeRand">Eye Colour</span></div>
+                        <div class="row1" id="8"><b class="questions">Birthday:</b><span class="answer" id="BirthdayRand">Birthday:</span></div>
+                        <div class="row1" id="9"><b class="questions">Fav Season:</b><span class="answer" id="SeasonRand">Fav Season</span></div>
+                        <div class="row1" id="10"><b class="questions">Fav Animal:</b><span class="answer" id="AnimalRand">Fav Animal</span></div>
+                        <div class="row1" id="11"><b class="questions">Fav Colour:</b><span class="answer" id="ColourRand">Fav Colour</span></div>
+                        <div class="row1" id="12"><b class="questions">Fav Show:</b><span class="answer" id="ShowRand">Fav Show</span></div>
+                        <div class="row1" id="13"><b class="questions">Fav Music:</b><span class="answer" id="MusicRand">Fav Music Genre:</span></div>
+                        <div class="row1" id="14"><b class="questions">Fav Class:</b><span class="answer" id="SchoolRand">Fav School Class:</span></div>
+                        <div class="row1" id="15"><b class="questions">Fav Book Genre:</b><span class="answer" id="BookRand">Fav Book Genre:</span></div>
+                        <div class="row1" id="16"><b class="questions">Fav Place :</b><span class="answer" id="PlaceRand">Fav Place :</span></div>
+                        <div class="row1" id="17"><b class="questions">Hobbies:</b><span class="answer" id="HobbyRand">Hobbies:</span></div>
+                        <div class="row1" id="18"><b class="questions">Aesthetic:</b><span class="answer" id="AestheticRand">Aesthetic:</span></div>
+                        <div class="row1" id="19"><b class="questions">Personality:</b><span class="answer" id="PersonalityRand">Personality:</span></div>
+                        <div class="row1" id="20"><b class="questions">Outfit:</b><span class="answer" id="OutfitRand">Outfit:</span></div>
                 </div>
                 <div class="canvas">
                     <canvas id = "myCanvas"></canvas>
@@ -111,7 +132,14 @@
                             <button onclick="ChangeColour('black')" class="colourBtn" style="background-color: black; border-color: black;"></button>
                             <button onclick="ChangeTool(true)" class="toolBtn" style="background-color: lightblue; border-color: black;">Pencil</button>
                             <button onclick="ChangeTool(false)" class="toolBtn" style="background-color: lightblue; border-color: black;">Eraser</button>
+                            <button onclick="SaveImg()" class="toolBtn" id="submitBtn" style="background-color: lightblue; border-color: black;">Submit</button>
                         </div>
+                    </div>
+                    <div class="finalScreen" id="finalScreen">
+                        <b class="answer" id="FirstNameAns">First Name</b>
+                        <img id="finishedDrawing" src="" alt="img">
+                        <b class="answer" id="FirstNameRand">First Name</b>
+                        <img id="finishedImg" src="" alt="img">
                     </div>
                 </div>
             </div>  

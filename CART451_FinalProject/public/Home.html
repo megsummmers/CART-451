@@ -4,8 +4,21 @@
 <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 <!-- Load the Paper.js library -->
 <script type="text/javascript" src="js/paper-full.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-    var userID;
+    var userFname;
+    var userLname;
+    console.log(userFname, userLname);
+
+    function Bio(){
+        window.location.href = "/profile";
+    }
+    function Profile(){
+        window.location.href = "/viewProfile";
+    }
+    function Canvas(){
+        window.location.href = "/draw";
+    }
 </script>
 <script type="text/javascript" src="js/clientGet.js"></script>
 <script type="text/javascript" src="js/clientPush.js"></script>
@@ -14,13 +27,13 @@
     </head>
     <body>
         <div class="main">
-            <h3>DRAW YOURSELF:</h3>
+            <div class="topBar" style="display: flex;"><button onclick="Home()" class="home" style="height: 45px; width: 50px; margin: 1%; background-color: white; border: 2px solid #1F6D80; border-radius: 5px; color:#1F6D80;">Home</button><h3>WELCOME</h3></div>
             <div class="frontPage">
                 <div><img src="assets/IMG_0545.PNG" alt="title" class="image" width="800px"></div>
                 <div>
-                    <button class="canvasButton"><img src="assets/play.PNG" width="175px">Play</button>
-                    <button class="bioButton"><img src="assets/pencil.PNG" width="175px">Create Bio</button>
-                    <button class="profileButton"><img src="assets/profile.PNG" width="175px">Profile</button>
+                    <button class="canvasButton" onclick="Canvas()"><img src="assets/play.PNG" width="125px">Play</button>
+                    <button class="bioButton" onclick="Bio()"><img src="assets/pencil.PNG" width="125px">Create Bio</button>
+                    <button class="profileButton" onclick="Profile()"><img src="assets/profile.PNG" width="125px">View Profile</button>
                 </div>
             </div>
         </div>

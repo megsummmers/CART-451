@@ -1,11 +1,12 @@
-var id = "Meg";
-
-window.onload = function () {
+window.addEventListener("load", function () {
+  console.log("loaded");
+  var userID = document.getElementById("FirstNameAns").value;
+  var artistID = document.getElementById("FirstNameRand").value;
 
   //GET
   $.get(
     "/varsToMongo",
-    {first_name: id},
+    {first_name: userID},
   // if we get a response from the server .... 
     function(response) {
       console.log(response[0]);
@@ -14,9 +15,6 @@ window.onload = function () {
       document.getElementById("LastNameAns").textContent = String(response[0].last_name);
       document.getElementById("GenderAns").textContent = String(response[0].gender);
       document.getElementById("SkinAns").textContent = String(response[0].skin);
-
-      //Margaret: you need to look at the output in the console and match the properties..
-      
       document.getElementById("HairAns").textContent = String(response[0].hair);
       document.getElementById("BodyAns").textContent = String(response[0].bod);
       document.getElementById("EyeAns").textContent = String(response[0].eye);
@@ -35,4 +33,4 @@ window.onload = function () {
       document.getElementById("OutfitAns").textContent = String(response[0].outfit);
         
     })
-  };//click
+  });//click

@@ -3,8 +3,10 @@
 <head>
 <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 <!-- Load the Paper.js library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/paper-full.js"></script>
 <script type="text/javascript" src="js/clientIMGPush.js"></script>
+<script type="text/javascript" src="js/clientGet.js"></script>
 <script type="text/javascript">
     paper.install(window);
     let colour = 'black';
@@ -14,6 +16,7 @@
     var art;
 
     window.onload = function() {
+        document.getElementById("FirstNameRand").value = document.getElementById("FirstNameAns").value
 		// Get a reference to the canvas object
 		canvas = document.getElementById('myCanvas');
         paper.setup(canvas);
@@ -48,45 +51,21 @@
     }
     function SaveImg(){
         var dataURL = canvas.toDataURL();
-        //imgPost(dataURL);
         document.querySelector("#finishedImg").src = dataURL;
+        //window.location.href = "/viewProfile";
+    }
+    function Home(){
+        window.location.href = "/home";
     }
     </script>
     <title>Caricature</title>
 </head>
 <body>
     <div class="main">
-        <h3>DRAW YOURSELF:</h3>
+        <div class="topBar" style="display: flex;"><button onclick="Home()" class="home" style="height: 45px; width: 50px; margin: 1%; background-color: white; border: 2px solid #1F6D80; border-radius: 5px; color:#1F6D80;">Home</button><h3>DRAW YOURSELF:</h3></div>
         <div class="interface">
             <div class="canvasSetup">
-                <!-- <div class="canProfile">
-                    <div class = "canvasQues">
-                        <b class="canvAns" id="NameAns">Name:</b>
-                        <b class="canvAns" id="GenderAns">Gender:</b>
-                        <b class="canvAns" id="SkinAns">Skin Colour:</b>
-                        <b class="canvAns" id="HairAns">Hair Colour:</b>
-                        <b class="canvAns" id="BodyAns">Body Type:</b>
-                        <b class="canvAns" id="EyeAns">Eye Colour:</b>
-                        <b class="canvAns" id="BirthdayAns">Birthday:</b>
-                        <b class="canvAns" id="SeasonAns">Fav Season:</b>
-                        <b class="canvAns" id="AnimalAns">Fav Animal:</b>
-                        <b class="canvAns" id="ColourAns">Fav Colour:</b>
-                        <b class="canvAns" id="ShowAns">Fav Show:</b>
-                    </div>
-                    <div class = "canvasAns">
-                        <b class="canvAns" id="NameAns">Name:</b> 
-                        <b class="canvAns" id="GenderAns">Gender:</b>
-                        <b class="canvAns" id="SkinAns">Skin Colour:</b>
-                        <b class="canvAns" id="HairAns">Hair Colour:</b>
-                        <b class="canvAns" id="BodyAns">Body Type:</b>
-                        <b class="canvAns" id="EyeAns">Eye Colour:</b>
-                        <b class="canvAns" id="BirthdayAns">Birthday:</b>
-                        <b class="canvAns" id="SeasonAns">Favorite Season:</b>
-                        <b class="canvAns" id="AnimalAns">Favorite Animal:</b>
-                        <b class="canvAns" id="ColourAns">Favorite Colour:</b>
-                        <b class="canvAns" id="ShowAns">Favorite Show:</b>
-                    </div>
-                </div> -->
+                <span id="FirstNameAns" style="display: block;">Meg</span><span id="FirstNameRand" style="display: block;">Summers</span>
                 <div class="canvas">
                     <canvas id = "myCanvas"></canvas>
                     <div class="colours">

@@ -7,12 +7,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script src="js/clientGet.js"></script>
+<script src="js/clientIMGGet.js"></script>
+<script type="text/javascript">
+    function Home(){
+        window.location.href = "/home";
+    }
+</script>
 </head>
     <body>
         <div class="main">
-            <h3>PROFILE</h3>
+            <div class="topBar" style="display: flex;"><button onclick="Home()" class="home" style="height: 45px; width: 50px; margin: 1%; background-color: white; border: 2px solid #1F6D80; border-radius: 5px; color:#1F6D80;">Home</button><h3>YOUR PROFILE</h3></div>
             <div class="frontPage">
-                <h2>Your profile</h2>
                 <div class = "names">
                     <div class="row1"><b class="questions">First Name:</b> <span class="answer" id="FirstNameAns">First Name</span></div>
                     <div class="row1"><b class="questions">Last Name:</b> <span class="answer" id="LastNameAns">Last Name</span></div>
@@ -35,6 +40,7 @@
                     <div class="row1"><b class="questions">Describe your Personality:</b><span class="answer" id="PersonalityAns">Describe your Personality:</span></div>
                     <div class="row1"><b class="questions">Describe your Outfit:</b><span class="answer" id="OutfitAns">Describe your Outfit:</span></div>
                 </div>
+                <img id="finishedImg" src="" alt="img">
             </div>
         </div>
     </body>

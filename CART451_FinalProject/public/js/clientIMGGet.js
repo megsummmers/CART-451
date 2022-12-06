@@ -1,27 +1,16 @@
-
-
-window.onload = function () {
+window.addEventListener("load", function () {
   console.log("we are loaded");
-  document.querySelector("#submitBtn").addEventListener('click', function(){
-    let link = document.querySelector("#finishedImg").src;
-    let id = "Meg";
-    //receive form info
-    $.ajax({
-      type: "POST",
-      data: {name: id, image: link},
-      url: "/postIMG",
-      processData: false,
-      cache: false,
-      timeout: 600000,
-      success: function (response) {
-      //reponse is a STRING
-      console.log("we had success!");
-      console.log(response);
-      },
-          error:function(e){
-          console.log(e);
-          console.log("error occurred");
-      }
+  let id = document.querySelector("#FirstNameAns").value;
+  document.querySelector("#sendData").addEventListener('click', function(){
+    //GET
+    $.get(
+      "/imgToMongo",
+      {first_name: id},
+    // if we get a response from the server .... 
+    function(response) {
+      console.log(response[0]);
+      document.getElementById("finishedImg").src = String(response[0].img_link);
+        
     });
   });
-}
+});//click

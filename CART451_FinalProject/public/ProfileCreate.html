@@ -7,10 +7,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script src="js/clientPush.js"></script>
+<script type="text/javascript">
+    function Home(){
+        window.location.href = "/home";
+    }
+    function Next(){
+        window.location.href = "/drawYourself";
+    }
+</script>
 </head>
     <body>
         <div class="main">
-            <h3>DESCRIBE YOURSELF:</h3>
+            <div class="topBar" style="display: flex;"><button onclick="Home()" class="home" style="height: 45px; width: 50px; margin: 1%; background-color: white; border: 2px solid #1F6D80; border-radius: 5px; color:#1F6D80;">Home</button><h3>CREATE YOUR PROFILE:</h3></div>
             <div class="frontPage">
                 <h2>Answer these questions to create your Profile</h2>
                 <div class = "names">
@@ -56,7 +64,7 @@
                     <input type="text" id="aesthetic" value=""/>
                     <input type="text" id="personality" value=""/>
                     <input type="text" id="outfit" value=""/>
-                    <input type="button" value="Submit" id="sendData"/>
+                    <input type="button" onclick="Next()" value="Submit" id="sendData"/>
                 </div>
             </div>
         </div>

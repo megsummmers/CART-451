@@ -1,8 +1,5 @@
-var id;
-
-window.onload = function () {
+window.addEventListener("load", function () {
   console.log("we are loaded");
-
     //receive form info
     document.querySelector("#sendData").addEventListener('click', 
       function(event){
@@ -59,8 +56,6 @@ window.onload = function () {
     
                }
              });
-    
-             getUserData();
-             window.location.href = "/viewProfile";
+  
       });//click
-  };
+  });

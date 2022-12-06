@@ -7,10 +7,13 @@ let server = require('http').createServer(app);  // create a server (using the E
 let static = require('node-static'); // for serving static files (i.e. css,js,html...)
 //import Mongodb
 let mongo = require('mongodb');
-let MongoClient = require('mongodb').MongoClient
-var url = "mongodb+srv://m_summ:CART451project@clustercaricature.v48higs.mongodb.net/test"
+let MongoClient = require('mongodb').MongoClient;
+var url = "mongodb+srv://m_summ:CART451project@clustercaricature.v48higs.mongodb.net/test";
+let userFname = "blake";
+let userLname = "belladonna";
 
 let bodyParser = require('body-parser');
+const { response } = require('express');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
@@ -56,12 +59,18 @@ server.listen(portNumber, function(){
 app.post('/postForm',handlePost);
 /// receive the post
 app.post('/postIMG',handleIMGPost);
-// query route
+// query var route
 app.use('/varsToMongo',handleGetVars);
+// query user info
+app.use('/varsToMongoRand',handleGetRandVars);
+// query img route
+app.use('/imgToMongo',handleGetImg);
+
 
 // push profile info into mongo
 function handlePost(request,response){
   console.log(request.body);
+  console.log(userFname, userLname);
   response.send("SUCCESS POST");
   MongoClient.connect(url, function(err, db){
     if(err) throw err;
@@ -91,12 +100,40 @@ function handleIMGPost(request,response){
   });
 }
 
-//query 
+//query text
 async function handleGetVars(request,response,next){
   MongoClient.connect(url, function(err, db){
     if(err) throw err;
     var accesDB = db.db("clustercaricature");
     accesDB.collection("Users").find(request.query).toArray(function(err, res){
+      if(err) throw err;
+      console.log(res);
+      response.send(res);
+      db.close();
+    })
+  });
+}
+
+//query text
+async function handleGetRandVars(request,response,next){
+  MongoClient.connect(url, function(err, db){
+    if(err) throw err;
+    var accesDB = db.db("clustercaricature");
+    accesDB.collection("Users").aggregate([{ $sample: {size: 1} }]).toArray(function(err, res){
+      if(err) throw err;
+      console.log(res);
+      response.send(res);
+      db.close();
+    })
+  });
+}
+
+//query image
+async function handleGetImg(request,response,next){
+  MongoClient.connect(url, function(err, db){
+    if(err) throw err;
+    var accesDB = db.db("clustercaricature");
+    accesDB.collection("Drawings").find(request.query).toArray(function(err, res){
       if(err) throw err;
       console.log(res);
       response.send(res);
