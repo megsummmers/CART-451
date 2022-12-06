@@ -10,15 +10,15 @@
     let colour = 'black';
     let ogcolour;
     let brushSize = 1;
+    let canvas;
+    var art;
 
     window.onload = function() {
 		// Get a reference to the canvas object
-		let canvas = document.getElementById('myCanvas');
+		canvas = document.getElementById('myCanvas');
         paper.setup(canvas);
         let pathTool =  new Tool();
         let myPath;
-
-        console.log(window.id);
 
         pathTool.onMouseDown = function (event){
             path = new Path();
@@ -28,19 +28,14 @@
         }
         pathTool.onMouseDrag = function(event) {
 			path.add(event.point);
-            path.smooth();
-		}
-        pathTool.onMouseDrag = function(event) {
-			path.closed = true;
-            path.smooth();
 		}
     }
     function ChangeColour(selectedColour){
-            colour = selectedColour;
+        colour = selectedColour;
     }
     function ChangeSize(change){
         brushSize = brushSize += change;
-        console.log(brushSize);
+
         document.getElementById("brushSize").innerHTML = brushSize;
     }
     function ChangeTool(pen){
@@ -52,25 +47,10 @@
         }
     }
     function SaveImg(){
-        var dataURL = canvas.toDataURL();
-        
-        $.ajax({
-            type: "POST",
-            data: {name: window.id, image: dataURL},
-            url: "/postIMG",
-            processData: false,
-            cache: false,
-            timeout: 600000,
-            success: function (response) {
-            //reponse is a STRING
-            console.log("we had success!");
-            console.log(response);
-            },
-                error:function(e){
-                console.log(e);
-                console.log("error occurred");
-            }
-        })
+        art = project.exportSVG();
+        console.log(art)
+        // var dataURL = canvas.toDataURL();
+        // imgPost(dataURL);
     }
     </script>
     <title>Caricature</title>
@@ -139,10 +119,10 @@
                             <button onclick="ChangeColour('black')" class="colourBtn" style="background-color: black; border-color: black;"></button>
                             <button onclick="ChangeTool(true)" class="toolBtn" style="background-color: lightblue; border-color: black;">Pencil</button>
                             <button onclick="ChangeTool(false)" class="toolBtn" style="background-color: lightblue; border-color: black;">Eraser</button>
-                            <button onclick="SaveImg(false)" class="toolBtn" style="background-color: lightblue; border-color: black;">Submit</button>
-
+                            <button onclick="SaveImg()" class="toolBtn" style="background-color: lightblue; border-color: black;">Submit</button>
                         </div>
                     </div>
+                    <img src="" alt="">
                 </div>
             </div>  
         </div>

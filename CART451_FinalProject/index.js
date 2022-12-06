@@ -83,7 +83,7 @@ function handleIMGPost(request,response){
     if(err) throw err;
     var accesDB = db.db("clustercaricature");
     var myobj = request.body;
-    accesDB.collection("Users").insertOne(myobj, function(err, res){
+    accesDB.collection("Drawings").insertOne(myobj, function(err, res){
       if(err) throw err;
       console.log("inserted doc");
       db.close();
