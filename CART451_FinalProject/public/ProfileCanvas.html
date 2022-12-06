@@ -47,10 +47,9 @@
         }
     }
     function SaveImg(){
-        art = project.exportSVG();
-        console.log(art)
-        // var dataURL = canvas.toDataURL();
-        // imgPost(dataURL);
+        var dataURL = canvas.toDataURL();
+        //imgPost(dataURL);
+        document.querySelector("#finishedImg").src = dataURL;
     }
     </script>
     <title>Caricature</title>
@@ -119,10 +118,10 @@
                             <button onclick="ChangeColour('black')" class="colourBtn" style="background-color: black; border-color: black;"></button>
                             <button onclick="ChangeTool(true)" class="toolBtn" style="background-color: lightblue; border-color: black;">Pencil</button>
                             <button onclick="ChangeTool(false)" class="toolBtn" style="background-color: lightblue; border-color: black;">Eraser</button>
-                            <button onclick="SaveImg()" class="toolBtn" style="background-color: lightblue; border-color: black;">Submit</button>
+                            <button onclick="SaveImg()" class="toolBtn" id="submitBtn" style="background-color: lightblue; border-color: black;">Submit</button>
                         </div>
                     </div>
-                    <img src="" alt="">
+                    <img id="finishedImg" src="" alt="img">
                 </div>
             </div>  
         </div>

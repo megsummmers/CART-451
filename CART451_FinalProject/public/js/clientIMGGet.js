@@ -1,13 +1,14 @@
-var id;
+
 
 window.onload = function () {
   console.log("we are loaded");
-
-  function imgPost(img){
+  document.querySelector("#submitBtn").addEventListener('click', function(){
+    let link = document.querySelector("#finishedImg").src;
+    let id = "Meg";
     //receive form info
     $.ajax({
       type: "POST",
-      data: {name: id, image: img},
+      data: {name: id, image: link},
       url: "/postIMG",
       processData: false,
       cache: false,
@@ -22,5 +23,5 @@ window.onload = function () {
           console.log("error occurred");
       }
     });
-  }
+  });
 }

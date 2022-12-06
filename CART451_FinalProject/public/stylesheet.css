@@ -174,6 +174,11 @@ body{
     box-shadow: 5px 10px 5px #1F6D80;
   }
 
+  #finishedImg {
+    width: 90%;
+    margin: 1%;
+  }
+
   .image {
     display: block;
     margin-left: auto;
@@ -198,7 +203,7 @@ body{
   }
 
   .questions {
-    margin-bottom: 4.5%;
+    margin-bottom: 1%;
   }
 
   .answers {
@@ -212,7 +217,7 @@ body{
 
   .answer {
     margin-bottom: 1.6%;
-    margin-left: 5%;
+    margin-left: 2%;
   }
 
   input{

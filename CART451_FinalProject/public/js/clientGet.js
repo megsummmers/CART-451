@@ -8,27 +8,31 @@ window.onload = function () {
     {first_name: id},
   // if we get a response from the server .... 
     function(response) {
-      console.log(response.first_name);
-      document.getElementById("#FirstNameAns").value = String(response.first_name);
-      document.getElementById("#LastNameAns").value = String(response.last_name);
-      document.getElementById("#GenderAns").value = String(response.gender_name);
-      document.getElementById("#SkinAns").value = String(response.skin_name);
-      document.getElementById("#HairAns").value = String(response.hair_name);
-      document.getElementById("#BodyAns").value = String(response.body_name);
-      document.getElementById("#EyeAns").value = String(response.eye_name);
-      document.getElementById("#BirthdayAns").value = String(response.birthday_name);
-      document.getElementById("#SeasonAns").value = String(response.season_name);
-      document.getElementById("#AnimalAns").value = String(response.animal_name);
-      document.getElementById("#ColourAns").value = String(response.colour_name);
-      document.getElementById("#ShowAns").value = String(response.show_name);
-      document.getElementById("#MusicAns").value = String(response.music_name);
-      document.getElementById("#SchoolAns").value = String(response.school_course_name);
-      document.getElementById("#BookAns").value = String(response.book_name);
-      document.getElementById("#PlaceAns").value = String(response.place_name);
-      document.getElementById("#AestheticAns").value = String(response.aesthetic_name);
-      document.getElementById("#PersonalityAns").value = String(response.personality_name);
-      document.getElementById("#HobbyAns").value = String(response.hobby_name);
-      document.getElementById("#OutfitAns").value = String(response.outfit_name);
+      console.log(response[0]);
+      console.log(response[0].first_name);
+      document.getElementById("FirstNameAns").textContent = String(response[0].first_name);
+      document.getElementById("LastNameAns").textContent = String(response[0].last_name);
+      document.getElementById("GenderAns").textContent = String(response[0].gender);
+      document.getElementById("SkinAns").textContent = String(response[0].skin);
+
+      //Margaret: you need to look at the output in the console and match the properties..
+      
+      document.getElementById("HairAns").textContent = String(response[0].hair);
+      document.getElementById("BodyAns").textContent = String(response[0].bod);
+      document.getElementById("EyeAns").textContent = String(response[0].eye);
+      document.getElementById("BirthdayAns").textContent = String(response[0].birthday);
+      document.getElementById("SeasonAns").textContent = String(response[0].season);
+      document.getElementById("AnimalAns").textContent = String(response[0].animal);
+      document.getElementById("ColourAns").textContent = String(response[0].colour);
+      document.getElementById("ShowAns").textContent = String(response[0].show);
+      document.getElementById("MusicAns").textContent = String(response[0].music);
+      document.getElementById("SchoolAns").textContent = String(response[0].school_course);
+      document.getElementById("BookAns").textContent = String(response[0].book);
+      document.getElementById("PlaceAns").textContent = String(response[0].place);
+      document.getElementById("AestheticAns").textContent = String(response[0].aesthetic);
+      document.getElementById("PersonalityAns").textContent = String(response[0].personality);
+      document.getElementById("HobbyAns").textContent = String(response[0].hobby);
+      document.getElementById("OutfitAns").textContent = String(response[0].outfit);
         
     })
   };//click
