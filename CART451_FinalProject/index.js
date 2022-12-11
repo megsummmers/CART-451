@@ -9,8 +9,6 @@ let static = require('node-static'); // for serving static files (i.e. css,js,ht
 let mongo = require('mongodb');
 let MongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://m_summ:CART451project@clustercaricature.v48higs.mongodb.net/test";
-let userFname = "blake";
-let userLname = "belladonna";
 
 let bodyParser = require('body-parser');
 const { response } = require('express');
@@ -70,7 +68,6 @@ app.use('/imgToMongo',handleGetImg);
 // push profile info into mongo
 function handlePost(request,response){
   console.log(request.body);
-  console.log(userFname, userLname);
   response.send("SUCCESS POST");
   MongoClient.connect(url, function(err, db){
     if(err) throw err;
@@ -130,6 +127,7 @@ async function handleGetRandVars(request,response,next){
 
 //query image
 async function handleGetImg(request,response,next){
+  console.log(request.query);
   MongoClient.connect(url, function(err, db){
     if(err) throw err;
     var accesDB = db.db("clustercaricature");

@@ -9,7 +9,6 @@ window.addEventListener("load", function () {
         console.log(id);
         let mData={
             //physical descriptors
-            full_name:document.querySelector("#firstname").value + document.querySelector("#lastname").value,
             first_name:document.querySelector("#firstname").value,
             last_name:document.querySelector("#lastname").value,
             gender:document.querySelector("#gender").value,

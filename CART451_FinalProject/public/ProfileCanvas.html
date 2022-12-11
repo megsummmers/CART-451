@@ -5,8 +5,11 @@
 <!-- Load the Paper.js library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/paper-full.js"></script>
-<script type="text/javascript" src="js/clientIMGPush.js"></script>
-<script type="text/javascript" src="js/clientGet.js"></script>
+<script type="text/javascript" src="js/client.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+<style> @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap'); </style>
 <script type="text/javascript">
     paper.install(window);
     let colour = 'black';
@@ -16,7 +19,7 @@
     var art;
 
     window.onload = function() {
-        document.getElementById("FirstNameRand").value = document.getElementById("FirstNameAns").value
+        document.getElementById("FirstNameRand").value = document.getElementById("FirstNameAns").value;
 		// Get a reference to the canvas object
 		canvas = document.getElementById('myCanvas');
         paper.setup(canvas);
@@ -52,20 +55,20 @@
     function SaveImg(){
         var dataURL = canvas.toDataURL();
         document.querySelector("#finishedImg").src = dataURL;
-        //window.location.href = "/viewProfile";
+        window.location.href = "/viewProfile";
     }
     function Home(){
         window.location.href = "/home";
     }
     </script>
-    <title>Caricature</title>
+    <title>ProfileCanvas</title>
 </head>
 <body>
     <div class="main">
         <div class="topBar" style="display: flex;"><button onclick="Home()" class="home" style="height: 45px; width: 50px; margin: 1%; background-color: white; border: 2px solid #1F6D80; border-radius: 5px; color:#1F6D80;">Home</button><h3>DRAW YOURSELF:</h3></div>
         <div class="interface">
             <div class="canvasSetup">
-                <span id="FirstNameAns" style="display: block;">Meg</span><span id="FirstNameRand" style="display: block;">Summers</span>
+                <span id="FirstNameAns" style="display: none;">Annie</span><span id="FirstNameRand" style="display: none;">Leffler</span>
                 <div class="canvas">
                     <canvas id = "myCanvas"></canvas>
                     <div class="colours">
