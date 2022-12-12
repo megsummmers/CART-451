@@ -67,6 +67,7 @@
         //imgPost(dataURL);
         document.querySelector("#finishedDrawing").src = dataURL;
         document.querySelector("#finalScreen").style.display = "flex";
+        document.querySelector("#canvasSetup").style.display = "none";
     }
     function Home(){
         window.location.href = "/home";
@@ -137,11 +138,11 @@
                     </div>
                 </div>
             </div>  
-            <div class="finalScreen" id="finalScreen" style="display: none">
-                <img id="finishedDrawing" src="" alt="img">
-                <img id="finishedImg" src="" alt="img">
-                <b class="answer" id="FinalFNameAns">First Name</b><b class="answer" id="FinalLNameAns">First Name</b>
-                <b class="answer" id="FinalFNameRand">First Name</b><b class="answer" id="FinalLNameRand">First Name</b>
+            <div class="finalScreen" id="finalScreen" style="display: flex; flex-direction: column; align-items: center;">
+                <img id="finishedDrawing" src="" alt="img" style="width: 40%; margin: 1%; background-color: white;">
+                <b class="answer" id="FinalFNameAns">First Name</b>
+                <img id="finishedImg" src="" alt="img" style="width: 40%; margin: 1%; background-color: white;">
+                <b class="answer" id="FinalFNameRand">First Name</b>
                 
             </div>
         </div>

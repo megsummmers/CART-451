@@ -47,6 +47,11 @@ app.get('/drawYourself', function(req, res){
 app.get('/viewProfile', function(req, res){
   res.sendFile(__dirname + '/public/ProfileView.html');
 });
+
+//view your profile route
+app.get('/gallery', function(req, res){
+  res.sendFile(__dirname + '/public/Gallery.html');
+});
  
 // make server listen for incoming messages
 server.listen(portNumber, function(){
@@ -111,7 +116,22 @@ async function handleGetVars(request,response,next){
   });
 }
 
-//query text
+//query image
+async function handleGetImg(request,response,next){
+  console.log(request.query);
+  MongoClient.connect(url, function(err, db){
+    if(err) throw err;
+    var accesDB = db.db("clustercaricature");
+    accesDB.collection("Drawings").find(request.query).toArray(function(err, res){
+      if(err) throw err;
+      console.log(res);
+      response.send(res);
+      db.close();
+    })
+  });
+}
+
+//query random text
 async function handleGetRandVars(request,response,next){
   MongoClient.connect(url, function(err, db){
     if(err) throw err;
@@ -125,13 +145,12 @@ async function handleGetRandVars(request,response,next){
   });
 }
 
-//query image
-async function handleGetImg(request,response,next){
-  console.log(request.query);
+//query random images
+async function handleGetRandIMG(request,response,next){
   MongoClient.connect(url, function(err, db){
     if(err) throw err;
     var accesDB = db.db("clustercaricature");
-    accesDB.collection("Drawings").find(request.query).toArray(function(err, res){
+    accesDB.collection("Drawings").aggregate([{ $sample: {size: 1} }]).toArray(function(err, res){
       if(err) throw err;
       console.log(res);
       response.send(res);

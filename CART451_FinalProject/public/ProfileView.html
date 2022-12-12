@@ -12,7 +12,6 @@
 
 <script type="text/javascript" src="js/client.js"></script>
 <script type="text/javascript">
-    document.getElementById("FirstNameRand").value = document.getElementById("FirstNameAns").value;
     function Home(){
         window.location.href = "/home";
     }
@@ -44,7 +43,12 @@
                     <div class="row1"><b class="questions">Describe your Personality:</b><span class="answer" id="PersonalityAns">Describe your Personality:</span></div>
                     <div class="row1"><b class="questions">Describe your Outfit:</b><span class="answer" id="OutfitAns">Describe your Outfit:</span></div>
                 </div>
-                <img id="finishedDrawing" src="" alt="img">
+                <div class="profile">
+                    <img id="finishedDrawing" src="" alt="img" style="height: 300px;">
+                    <div>
+                        <button>Previous</button><b><span id="artist">Shandon</span>'s Caricature by <span id="artist">Shandon</span></b><button>Next</button>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

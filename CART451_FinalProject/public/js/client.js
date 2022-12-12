@@ -1,16 +1,14 @@
 window.localStorage;
-var userID = "Meg";
-var randUserID;
 var title;
 
 window.addEventListener("load", function () {
   title = this.document.title;
-  console.log(title);
   switch(title){
     case "ProfileCreate": pushText(); break;
     case "ProfileCanvas": pushIMG(); break;
     case "ProfileView": getUser(); getIMG(); break;
-    case "CanvasGame": getRandUser(); getUser(); getIMG(); getRandIMG(); break;
+    case "CanvasGame": getRandUser(); getUser(); getRandIMG(); break;
+    case "Gallery": getUsers(); break;
   }
 
     function pushText(){
@@ -18,9 +16,7 @@ window.addEventListener("load", function () {
       document.querySelector("#sendData").addEventListener('click', 
         function(event){
           event.preventDefault();
-          console.log("clicked");
           localStorage.setItem("userID", document.querySelector("#firstname").value);
-          localStorage.setItem("randUserID", document.querySelector("#firstname").value);
           let mData={
               //physical descriptors
               first_name:document.querySelector("#firstname").value,
@@ -76,12 +72,13 @@ window.addEventListener("load", function () {
     function pushIMG(){
       document.querySelector("#submitBtn").addEventListener('click', function(){
         let user = localStorage.getItem("userID");
-        let randUser = localStorage.getItem("randUserID");
+        let img_link = document.querySelector("#finishedImg").src;
+        console.log(user);
         let mData={
           //physical descriptors
           subject_name:user,
-          artist_name:randUser,
-          img_link:document.querySelector("#finishedImg").src
+          artist_name:user,
+          img_link:img_link
         };
         console.log(mData);
     
@@ -96,7 +93,6 @@ window.addEventListener("load", function () {
           timeout: 600000,
           success: function (response) {
           //reponse is a STRING
-          console.log("we had success!");
           console.log(response);
         },
             error:function(e){
@@ -114,10 +110,7 @@ window.addEventListener("load", function () {
       // if we get a response from the server .... 
         function(response) {
           console.log(response[0]);
-          console.log(response[0].first_name);
-          localStorage.setItem("randUserID", String(response[0].first_name));
-          switch(title){
-            case "ProfileView":
+          localStorage.setItem("randUserID", response[0].first_name);
           document.getElementById("FirstNameRand").textContent = String(response[0].first_name);
           document.getElementById("LastNameRand").textContent = String(response[0].last_name);
           document.getElementById("GenderRand").textContent = String(response[0].gender);
@@ -138,19 +131,15 @@ window.addEventListener("load", function () {
           document.getElementById("PersonalityRand").textContent = String(response[0].personality);
           document.getElementById("HobbyRand").textContent = String(response[0].hobby);
           document.getElementById("OutfitRand").textContent = String(response[0].outfit);
-          break;
-
-          case "CanvasGame":
-            //finished image stuff
-            document.getElementById("FinalFNameRand").textContent = String(response[0].first_name);
-            document.getElementById("FinalLNameRand").textContent = String(response[0].last_name);
-            break;
-          }
+          //finished image stuff
+          document.getElementById("FinalFNameRand").textContent = String(response[0].first_name);
+          document.getElementById("FinalLNameRand").textContent = String(response[0].last_name);
         })
       }
 
       function getUser(){
-        let user = localStorage.getItem("userID");
+        //let user = localStorage.getItem("userID");
+        user = "Shandon";
         console.log(user);
         //GET
         $.get(
@@ -159,7 +148,6 @@ window.addEventListener("load", function () {
         // if we get a response from the server .... 
         function(response) {
           console.log(response[0]);
-          console.log(response[0].first_name);
           if(title == "ProfileView"){
             document.getElementById("FirstNameAns").textContent = String(response[0].first_name);
             document.getElementById("LastNameAns").textContent = String(response[0].last_name);
@@ -191,7 +179,9 @@ window.addEventListener("load", function () {
       }
 
       function getIMG(){
-        let user = localStorage.getItem("userID");
+        //let user = localStorage.getItem("userID");
+        user = "Shandon";
+        console.log(user);
           //GET
           $.get(
             "/imgToMongo",
@@ -207,19 +197,79 @@ window.addEventListener("load", function () {
       }
 
       function getRandIMG(){
-        let user = localStorage.getItem("userID");
         let randUser = localStorage.getItem("randUserID");
+        console.log(randUser);
           //GET
           $.get(
             "/imgToMongo",
             {
-              artist_name: user, 
+              artist_name: randUser, 
               subject_name: randUser
             },
           // if we get a response from the server .... 
           function(response) {
             console.log(response[0]);
             document.getElementById("finishedImg").src = String(response[0].img_link);
+          });
+      }
+
+      function getUsers(){
+        
+        let user1 = "Sharon";
+        let user2 = "Sarah";
+        let user3 = "Sabine";
+        let user4 = "Shandon";
+          //GET
+          $.get(
+            "/imgToMongo",
+            {
+              artist_name: user1, 
+              subject_name: user1
+            },
+          // if we get a response from the server .... 
+          function(response) {
+            console.log(response[0]);
+            document.getElementById("finishedDrawing1").src = String(response[0].img_link);
+            document.getElementById("FinalFNameAns1").textContent = String(response[0].subject_name);
+          });
+          //GET
+          $.get(
+            "/imgToMongo",
+            {
+              artist_name: user2, 
+              subject_name: user2
+            },
+          // if we get a response from the server .... 
+          function(response) {
+            console.log(response[0]);
+            document.getElementById("finishedDrawing2").src = String(response[0].img_link);
+            document.getElementById("FinalFNameAns2").textContent = String(response[0].subject_name);
+          });
+          //GET
+          $.get(
+            "/imgToMongo",
+            {
+              artist_name: user3, 
+              subject_name: user3
+            },
+          // if we get a response from the server .... 
+          function(response) {
+            console.log(response[0]);
+            document.getElementById("finishedDrawing3").src = String(response[0].img_link);
+            document.getElementById("FinalFNameAns3").textContent = String(response[0].subject_name);
+          });
+          //GET
+          $.get(
+            "/imgToMongo",
+            {
+              artist_name: user4, 
+              subject_name: user4
+            },
+          // if we get a response from the server .... 
+          function(response) {
+            console.log(response[0]);
+            document.getElementById("finishedDrawing4").src = String(response[0].img_link);
+            document.getElementById("FinalFNameAns4").textContent = String(response[0].subject_name);
           });
       }
   });

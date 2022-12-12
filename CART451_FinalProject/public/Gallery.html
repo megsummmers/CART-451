@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <title>Gallery</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<!-- Load the Paper.js library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+<style> @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap'); </style>
+
+<script type="text/javascript" src="js/client.js"></script>
+<script type="text/javascript" src="js/paper-full.js"></script>
+<script type="text/javascript">
+    function Home(){
+        window.location.href = "/home";
+    }
+</script>
+</head>
+<body>
+    <div class="main">
+        <div class="topBar" style="display: flex;"><button onclick="Home()" class="home" style="height: 45px; width: 50px; margin: 1%; background-color: white; border: 2px solid #1F6D80; border-radius: 5px; color:#1F6D80;">Home</button><h3>MAKE A CARICATURE:</h3></div>
+        <div class="interface">
+            <div class="finalScreen" id="finalScreen" style="display: flex; flex-direction: column; align-items: center;">
+                <h1>View Finished Caricatures</h1>
+                <div class="galleryRow" style="display:flex; flex-direction: row;">
+                    <img id="finishedDrawing1" src="" alt="img" style="width: 40%; margin: 1%; background-color: white;">
+                    <img id="finishedDrawing2" src="" alt="img" style="width: 40%; margin: 1%; background-color: white;">
+                </div>
+                <div class="galleryRow" style="display:flex; flex-direction: row;">
+                    <b class="answer" id="FinalFNameAns1">First Name</b>
+                    <b class="answer" id="FinalFNameAns2">First Name</b>
+                </div>
+                <div class="galleryRow" style="display:flex; flex-direction: row;">
+                    <img id="finishedDrawing3" src="" alt="img" style="width: 40%; margin: 1%; background-color: white;">
+                    <img id="finishedDrawing4" src="" alt="img" style="width: 40%; margin: 1%; background-color: white;">
+                </div>
+                <div class="galleryRow" style="display:flex; flex-direction: row;">
+                    <b class="answer" id="FinalFNameAns3">First Name</b>
+                    <b class="answer" id="FinalFNameAns4">First Name</b>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
